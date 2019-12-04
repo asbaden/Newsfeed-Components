@@ -85,7 +85,25 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+    title: 'Bob Ross',
+    date: 'May 26th, 2019',
+    firstParagraph: `There's not a thing in the world wrong with washing your brush. I like to beat the brush. Volunteering your time; it pays you and your whole community fantastic dividends. They say everything looks better with odd numbers of things. But sometimes I put even numbers—just to upset the critics. Maybe there's a happy little bush that lives right there. You can't have light without dark. You can't know happiness unless you've known sorrow.`,
+
+    secondParagraph: `Very easy to work these to death. How do you make a round circle with a square knife? That's your challenge for the day. We don't have to be concerned about it. We just have to let it fall where it will. If you didn't have baby clouds, you wouldn't have big clouds. Fluff that up.`,
+
+    thirdParagraph: `Get away from those little Christmas tree things we used to make in school. There comes a nice little fluffer. Isn't that fantastic? You can just push a little tree out of your brush like that. Just make a decision and let it go. Don't be afraid to make these big decisions. Once you start, they sort of just make themselves.`
+  },
+  {
+    title: 'Cheese and You',
+    date: 'January 28th, 2019',
+    firstParagraph: `Jarlsberg gouda parmesan. Cheese strings smelly cheese red leicester chalk and cheese cheese and wine stilton goat who moved my cheese. Cheddar squirty cheese fondue goat cream cheese rubber cheese hard cheese edam. Lancashire cheese triangles cheese on toast goat ricotta paneer cheese strings edam. Manchego.`,
+
+    secondParagraph: `Parmesan cheese and biscuits st. agur blue cheese. Cottage cheese dolcelatte bavarian bergkase edam boursin taleggio fromage frais when the cheese comes out everybody's happy. Manchego chalk and cheese roquefort stinking bishop macaroni cheese danish fontina melted cheese fondue. Taleggio stinking bishop edam paneer hard cheese cheese triangles smelly cheese emmental. Pecorino paneer.`,
+
+    thirdParagraph: `Jarlsberg cream cheese croque monsieur. Port-salut cauliflower cheese jarlsberg manchego cheesy feet mozzarella chalk and cheese cut the cheese. Emmental cream cheese everyone loves danish fontina queso mascarpone bavarian bergkase fromage. Roquefort mozzarella bocconcini brie cottage cheese fromage frais squirty cheese bocconcini. Taleggio st. agur blue cheese the big cheese cheese triangles.`
+  },
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -116,11 +134,51 @@ const data = [
 
 //step 1
 
-function comp (data) {
-  const
+function createArticle(data) {
+  
+  // Define Elements
+  const articleContainer= document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const firstParagraph = document.createElement('p');
+  const secondParagraph = document.createElement('p');
+  const thirdParagraph = document.createElement('p');
+  const expandButton = document.createElement('span');
+  // Set Class Names
+  articleContainer.classList.add('article');
+  articleDate.classList.add('date');
+  firstParagraph.classList.add('firstParagraph');
+  secondParagraph.classList.add('secondParagraph');
+  thirdParagraph.classList.add('thirdParagraph');
+  expandButton.classList.add('expandButton')
+  // Setup Structure of Elements
+  articleContainer.appendChild(articleTitle);
+  articleContainer.appendChild(articleDate);
+  articleContainer.appendChild(firstParagraph);
+  articleContainer.appendChild(secondParagraph);
+  articleContainer.appendChild(thirdParagraph);
+  articleContainer.appendChild(expandButton);
+ 
+  // Setting Text Content
+  articleTitle.textContent = data.title;
+  articleDate.textContent = data.date;
+  firstParagraph.textContent = data.firstParagraph;
+  secondParagraph.textContent = data.secondParagraph;
+  thirdParagraph.textContent = data.thirdParagraph;
+  expandButton.textContent = '\u25b2';
 
+
+
+  // Event Listeners
+  expandButton.addEventListener('click', event => {
+    articleContainer.classList.toggle('article-open');
+  })
+    
+  return articleContainer;
 }
-
-
+const articles = document.querySelector('.articles');
+data.forEach(data => {
+  articles.appendChild(createArticle(data))
+})
 
 
